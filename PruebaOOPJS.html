@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<script>
+
+		// function Persona(newName, newColor){
+		// 	name = newName,
+		// 	color = newColor,
+		// 	toString = function(){
+		// 		console.log("Hola mi nombre es : " + name + " y tengo "+ color);
+		// 	}
+		// };
+
+		// var Alex = new Persona("Alex", 22);
+		// Alex.toString();
+
+		// var alex = {
+		// 	nombre : "Alex",
+		// 	edad: 22,
+		// 	toString: function(){
+		// 		console.log("Hola mi nombre es	 " + this.nombre + " y tengo "+ this.edad);
+		// 	}
+		// }
+
+		// alex.toString();
+
+
+		// Algunos de los datos que pueden ser los atributos de un objeto
+		// String, array, number, object, function, boolean, structured data, date
+
+		 class Persona {
+		 	constructor(pnombre, pedad){
+		 		this.nombre = pnombre;
+				this.edad = pedad;
+		 	}
+			
+			
+			set setNombre(nombre){
+				this.nombre = nombre;
+			}
+			get getNombre(){
+				return this.edad;
+			}
+
+			toString(){
+				return "Hola mi nombre es " + this.nombre + " y tengo "+ this.edad;
+			}
+
+		}
+
+		var alex = new Persona("Alex", 42);
+
+		//Dot notation
+		console.log(alex.nombre);
+		console.log(alex.toString());
+		
+		//Bracket notation
+		console.log(alex['nombre']);
+		console.log(alex['toString']());
+		
+	</script>
+</body>
+</html>
