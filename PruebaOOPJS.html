@@ -8,7 +8,7 @@
 </head>
 <body>
 	<script>
-
+		
 		// function Persona(newName, newColor){
 		// 	name = newName,
 		// 	color = newColor,
@@ -63,7 +63,28 @@
 		//Bracket notation
 		console.log(alex['nombre']);
 		console.log(alex['toString']());
+
+		// uso de bracket notation dinamico	
+		var propiedades = [
+			"nombre",
+			"edad"
+		];
+
+		for (var i = propiedades.length - 2; i >= 0; i--) {
+			console.log("Hola mi nombre es"+ alex[propiedades[i]]+ " y tengo "+ alex[propiedades[i+1]])
+		}
+		// Fin uso bracket notation dinamico	
 		
+		//Eliminar una propiedad de un objeto
+		//delete alex.nombre;
+		delete alex['nombre']; // undefined
+
+		console.log(alex.nombre);
+
+		//crear nuevamente la propiedad
+		alex.nombre = 'Alex';
+		console.log(alex.nombre);
+
 	</script>
 </body>
 </html>
