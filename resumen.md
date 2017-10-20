@@ -1,8 +1,8 @@
-# Introduccion a JavaScript Orientado a Objetos
+# Introducci&oacute;n a JavaScript Orientado a Objetos
 
 ## Contenidos
 
-1. [Programacion Orientada a Objetos](#programacion-orientada-a-objetos) 
+1. [Programaci&oacute;n Orientada a Objetos](#programacion-orientada-a-objetos) 
 1. [Objetos en JavaScript](#objetos-en-javascript)
     1. [Tipos de datos y objetos globales](#tipos-de-datos-y-objetos-globales)
     1. [Global Object](#global-object)
@@ -11,40 +11,39 @@
     1. [Propiedad constructor](#propiedad-constructor)
     1. [Funciones que retornan Objetos](#funciones-que-retornan-objetos)
     1. [Operador instanceof](#operador-instanceof)
-    1. [Elementos, propiedades y metodos](#elementos-propiedades-y-metodos)
+    1. [Elementos, propiedades y m&eacute;todos](#elementos-propiedades-y-metodos)
     1. [Accediendo a las propiedades de un Objeto](#accediendo-a-las-propiedades-de-un-objeto)
-    1. [Llamando metodos de un Objeto](#llamando-metodos-de-un-objeto)
+    1. [Llamando m&eacute;todos de un Objeto](#llamando-metodos-de-un-objeto)
     1. [Definiendo getters y setters](#definiendo-getters-y-setters)
-    1. [Modificando Propiedades/Metodos](#modificando-propiedadesmetodos)
+    1. [Modificando Propiedades/M&eacute;todos](#modificando-propiedadesmetodos)
     1. [Comparando Objetos](#comparando-objetos)
 
-
-## Programacion Orientada a Objetos
+## Programaci&oacute;n Orientada a Objetos
 
 La Programación Orientada a Objetos (OOP) es un paradigma de programación que utiliza la abstracción para crear modelos basados en el mundo real. 
 
-OOP se refiere al uso de piezas autónomas de código para desarrollar aplicaciones. Llamamos a estas piezas autónomas de objetos de código, más conocidos como Clases en la mayoría de los lenguajes de programación OOP y Funciones en JavaScript. Usamos los objetos como bloques de construcción para nuestras aplicaciones. Construir aplicaciones con objetos nos permite adoptar algunas técnicas valiosas, a saber, Herencia (los objetos pueden heredar características de otros objetos), Polimorfismo (los objetos pueden compartir la misma interfaz, cómo se accede y se utiliza), mientras que su aplicación subyacente de la interfaz puede diferir) y encapsulación (cada objeto es responsable de tareas específicas).
+OOP se refiere al uso de piezas autónomas de código para desarrollar aplicaciones. Llamamos a estas piezas autónomas de objetos de código, más conocidos como Clases en la mayoría de los lenguajes de programación OOP y funciones en JavaScript. Usamos los objetos como bloques de construcción para nuestras aplicaciones. Construir aplicaciones con objetos nos permite adoptar algunas técnicas valiosas, a saber, Herencia (los objetos pueden heredar características de otros objetos), Polimorfismo (los objetos pueden compartir la misma interfaz, cómo se accede y se utiliza), mientras que su aplicación subyacente de la interfaz puede diferir) y encapsulación (cada objeto es responsable de tareas específicas).
 
-JavaScript no es un lenguaje OOP a toda regla, como Java o PHP, pero es un lenguaje basado en objetos. Cuando hablamos de Objetos en JavaScript, nos estamos refiendo al tipo de dato (Object) y no al concepto de OOP.
+JavaScript no es un lenguaje OOP a toda regla, como Java o PHP, pero es un lenguaje basado en objetos. Cuando hablamos de Objetos en JavaScript, normalmente nos estamos refiendo al tipo de dato (Object) y no al concepto de OOP.
 
 ## Objetos en JavaScript
 
 ### Tipos de datos y objetos globales
 En JavaScript, existen los siguientes tipos de datos:
 
-* null
-* undefined
-* boolean
-* number
-* string
-* object
-* symbol -- (ES6)
+* `null`
+* `undefined`
+* `boolean`
+* `number`
+* `string`
+* `object`
+* `symbol` -- (ES6)
 
 Todos, exepto `object`, se conocen como *primitivos*. Las variables no tienen tipos; los valores tienen tipos. Las variables pueden contener cualquier valor, en cualquier momento.
 
 A diferencia de muchos otros lenguajes, JavaScript no soporta clases, pero tiene (built-in) constructores. Los constructores son como las funciones normales, pero las usamos con la palabra reservada "new". Hay dos tipos de constructores: constructores nativos (también incorporados) como `Array` y `Objet`, que están disponibles automáticamente en el entorno de ejecución en *runtime*; y constructores personalizados, que definen propiedades y métodos para su propio tipo de objeto.
 
-Esta serie de built-in / objetos globales (objetos incorporados), tienen funciones y propiedades. El término "objetos globales" no debe confundirse con el objeto global (global object). Los objetos globales se refieren a objetos en el ámbito global. Algunos de los mas usados son:
+Esta serie de built-in / objetos globales (objetos incorporados), tienen funciones y propiedades. El término "objetos globales" no debe confundirse con el objeto global (global object). Los objetos globales se refieren a objetos en el ámbito global. Algunos de los más usados son:
 
 * `String()`
 * `Number()`
@@ -69,9 +68,9 @@ A pesar de lo anterior, es casi universalmente preferido utilizar la forma liter
 
 ### Global Object
 
-Los programas de JavaScript se ejecutan dentro de un host environment (el navegador para ejemplo), el cual provee un objeto global, y toda variable global se convierte en una propiedad de este objeto global.
+Los programas de JavaScript se ejecutan dentro de un host environment (el navegador, para ejemplo), el cual provee un objeto global, y toda variable global se convierte en una propiedad de este objeto global.
 
-Cuando el host enviroment es el navegador, el objeto global se conoce como *window*. Por ejemplo, si declaramos una variable fuera de una funcion, podemos acceder a esta variable de varias maneras.
+Cuando el host enviroment es el navegador, el objeto global se conoce como *window*. Por ejemplo, si declaramos una variable fuera de una función, podemos acceder a esta variable de varias maneras.
 
 ```javascript
 var a = 1; // variable global
@@ -97,7 +96,7 @@ name // "Leonardo"
 window.name // "Leonardo"
 ```
 
-Tener variables globales, como la anterior, se le conoce como contaminar el global namespace, y es un anti patron en JavaScript. 
+Tener variables globales, como la anterior, se le conoce como contaminar el global namespace, y es un anti patrón en JavaScript. 
 
 ### Object
 
@@ -106,11 +105,11 @@ En algunos lenguajes de programación, hay una distinción entre:
 * Una matriz normal, también llamada indexada o enumerada (keys son números) y
 * Una matriz asociativa, también llamada hash (keys son strings)
 
-JavaScript usa `array` para representar matrices indexadas y `object` (objeto) para representar matrices asociativas. Si quiere un hash en JavaScript, usa un `object`.
+JavaScript usa `array` para representar matrices indexadas y `object` (objeto) para representar matrices asociativas. Si necesitamos un hash en JavaScript, debemos usar un `object`.
 
-Un objeto es muy similar a un array, pero con la diferencia de que uno puede definir los keys. No está limitado a usar solo índices numéricos, sino que, podemos usar más keys mas amigables como *first_name*, *age*, *curso*, etc.
+Un objeto es muy similar a un array, pero con la diferencia de que uno puede definir los keys. No está limitado a usar sólo índices numéricos, sino que, podemos usar keys más amigables como *first_name*, *age*, *curso*, etc.
 
-Un objeto en JavaScript se ve asi:
+Un objeto en JavaScript se ve así:
 
 ```javascript
 var heroe = {
@@ -121,10 +120,10 @@ var heroe = {
 
 Del ejemplo anterior se puede ver que:
 
-* El nombre de la variable que contiene al objeto es heroe.
+* El nombre de la variable que contiene al objeto es `heroe`.
 * En lugar de usar [] para definir un array, usamos {} para objetos
-* Separamos los elementos (llamados propiedads) contenidos en el objeto usando comas.
-* Los pares de key/value se dividen usando dos puntos (:), key: value
+* Separamos los elementos (llamados propiedades) contenidos en el objeto usando comas (,).
+* Los pares de key/value se dividen usando dos puntos (:), `key: value`
 
 `Object` es el padre de todos los objetos en JavaScript, lo que significa que, cada objeto que creamos hereda de &eacute;l.
 
@@ -165,9 +164,11 @@ var myCar = {
 };
 ```
 
+De todos los ejemplos anteriores, la forma literal es la mas flexible, debido a que, podemos definir las propiedades y sus valores al momento de crear el objeto.
+
 ### Propiedad `constructor`
 
-Cuando se crea un objeto, se le asigna una propiedad especial *detrás de escena*: la propiedad constructor. Esta propiedad contiene una referencia a la función constructora utilizada para crear este objeto.
+Cuando se crea un objeto, se le asigna una propiedad especial *detrás de escena*: la propiedad *constructor*. Esta propiedad contiene una referencia a la función constructora utilizada para crear este objeto.
 
 Si el objeto se creó utilizando la notación literal de `object`, su constructor es el incorporado en la función constructora `Object()`.
 
@@ -188,7 +189,7 @@ typeof o.constructor; // "function"
 
 ### Funciones que retornan Objetos
 
-Además de usar la propiedad constructor y el operador *new* para crear objetos, también podemos usar una función normal y crear objetos sin necesidad de *new*. Por ejemplo, podemos tener una función que realice algun tipo un tarea y tiene un objeto como valor de retorno.
+Además de usar la propiedad constructor y el operador *new* para crear objetos, también podemos usar una función normal y crear objetos sin necesidad de *new*. Por ejemplo, podemos tener una función que realice algun tipo de tarea, y retorna un objeto.
 
 ```javascript
 function factory(value) {
@@ -202,7 +203,7 @@ miObj.name; // "one"
 miObj; // { name: 'one' }
 ```
 
-Podemos utilizar lo anterior, para *ocultar* variables &oacute; m&eacute;todos, y solo expondriamos lo necesario al agregarlo al objeto retornado.
+Podemos utilizar lo anterior para *ocultar* variables &oacute; m&eacute;todos; de esta manera sólo expondremos lo necesario, y lo que queremos que sea p&uacute;blico debe ser retornado en el objeto.
 
 ```javascript
 function heroe() {
@@ -227,7 +228,7 @@ tortuga.saludo(); // 'Ajoooy'
 
 ### Operador `instanceof`
 
-Usando el operador `instanceof`, se puede probar si un objeto fue creado con una específica función constructora.
+Usando el operador `instanceof`, se puede probar si un objeto fue creado con una específica función constructora; nos indica si es una instancia de X objeto.
 
 ```javascript
 function Hero() {} // ES5
@@ -238,8 +239,10 @@ var o = {};
 
 h instanceof Hero; // true
 h instanceof Object // true
+
 o instanceof Hero; // false
 o instanceof Object; // true
+
 z instanceof BadGuy; // true
 z instanceof Object; // true
 
@@ -247,9 +250,9 @@ typeof Hero; // "function"
 typeof BadGuy; // "function"
 ```
 
-### Elementos, propiedades y metodos
+### Elementos, propiedades y m&eacute;todos
 
-Los elementos de un objeto se conocen como propiedades; una propiedad puede contener cualquier tipo de valor, incluso otro objeto; cuando la propiedad contiene una funcion, se le llama metodo.
+Los elementos de un objeto se conocen como propiedades; una propiedad puede contener cualquier tipo de valor, incluso otro objeto; cuando la propiedad contiene una función, se le llama m&eacute;todo.
 
 ```javascript
 var leon = {
@@ -265,7 +268,7 @@ var leon = {
 
 ### Accediendo a las propiedades de un Objeto
 
-Para acceder a los atributos y/o métodos de un objecto lo podemos hacer de dos maneras, dot notation o Bracket notation:
+Para acceder a los atributos y/ó métodos de un objecto lo podemos hacer de dos maneras, mediante *dot notation* ó *bracket notation*:
 
 Dot notation: 
 `leon.nombre`
@@ -275,9 +278,9 @@ Bracket notation:
 
 Si tratamos de acceder a una propiedad que no existe, va a retornar `undefined`
 
-### Llamando metodos de un Objeto
+### Llamando m&eacute;todos de un Objeto
 
-Llamar (invocar) un método es lo mismo que llamar a cualquier otra función: simplemente agregamo un paréntesis después del nombre del método, y como el metodo es una propiedad, podemos usar dot o bracket notation.
+Llamar (invocar) un método es lo mismo que llamar a cualquier otra función: simplemente agregamos un paréntesis después del nombre del método, y como el método es una propiedad, podemos usar dot o bracket notation.
 
 `leon.rugir();`
 
@@ -285,7 +288,7 @@ Llamar (invocar) un método es lo mismo que llamar a cualquier otra función: si
 
 ### Definiendo getters y setters
 
-Se pueden definir getters y setters en cualquier objeto predefinido, u objeto definido por el usuario, que admita la adición de nuevas propiedades. La sintaxis para definir getters y setters usa la sintaxis literal del objeto.
+Se pueden definir *getters* y *setters* en cualquier objeto predefinido, u objeto definido por el usuario, que admita la adición de nuevas propiedades. Se utiliza la sintaxis literal del objeto para definirlos.
 
 ```javascript
 var language = {
@@ -305,10 +308,10 @@ language.current = 'EN';
 console.log(language.log); // ['ES','FR', 'EN']
 ```
 
-Para agregar un getter y/o setter a un Objeto ya existente, se debe hacer uso del metodo `Object.defineProperty()`.
+Para agregar un getter y/&ocute; setter a un Objeto ya existente, se debe hacer uso del método `Object.defineProperty()`.
 
 ```javascript
-var o = {a: 0};
+var o = { a: 0 };
 
 Object.defineProperty(o, 'b', { get: function() { return this.a + 1; } });
 Object.defineProperty(o, 'c', { set: function(x) { this.a = x / 2; } });
@@ -319,9 +322,9 @@ o.c = 10; // Ejecuta el setter
 console.log(o.a) // 5
 ```
 
-### Modificando Propiedades/Metodos
+### Modificando Propiedades/Métodos
 
-JavaScript es un lenguaje dinámico; permite alterar propiedades y métodos de objetos existentes en cualquier momento. Esto incluye agregar nuevas propiedades o eliminarlas. Se puede comenzar con un objeto en blanco y agregar propiedades más adelante.
+JavaScript es un lenguaje dinámico; permite alterar propiedades y métodos de objetos existentes en cualquier momento. Esto incluye agregar nuevas propiedades &oacute; eliminarlas. Se puede comenzar con un objeto en blanco y agregar propiedades más adelante.
 
 ```javascript
 var persona = {};
@@ -340,7 +343,7 @@ persona.edad = 35; // sobreescribe el valor de edad
 
 ### Comparando Objetos
 
-En JavaScript, los objetos son un tipo de referencia. Dos objetos distintos nunca son iguales, incluso si tienen las mismas propiedades. Solo comparando la misma referencia de objeto consigo mismo se obtiene verdadero.
+En JavaScript, los objetos son un tipo de referencia. Dos objetos distintos nunca son iguales, incluso si tienen las mismas propiedades. S&oacute;lo comparando la misma referencia de objeto consigo mismo se obtiene true.
 
 ## OOP — repaso
 
