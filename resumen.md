@@ -1,5 +1,19 @@
 # Introduccion a JavaScript Orientado a Objetos
 
+## Contenidos
+
+1. [Programacion Orientada a Objetos](#programacion-orientada-a-objetos) 
+1. [Objetos en JavaScript](#objetos-en-javascript)
+..1. [Tipos de datos y objetos globales](#tipos-de-datos-y-objetos-globales)
+..1. [Object](#object)
+..1. [Como crear Objetos](#como-crear-objetos)
+..1. [Elementos, propiedades y metodos](#elementos-propiedades-y-metodos)
+..1. [Accediendo a las propiedades de un Objeto](#accediendo-a-las-propiedades-de-un-objeto)
+..1. [Definiendo getters y setters](#definiendo-getters-y-setters)
+..1. [Modificando Propiedades/Metodos](#modificando-propiedadesmetodos)
+..1. [Comparando Objetos](#comparando-objetos)
+
+
 ## Programacion Orientada a Objetos
 
 La Programación Orientada a Objetos (OOP) es un paradigma de programación que utiliza la abstracción para crear modelos basados en el mundo real. 
@@ -207,18 +221,9 @@ persona.edad = 35; // sobreescribe el valor de edad
 
 En JavaScript, los objetos son un tipo de referencia. Dos objetos distintos nunca son iguales, incluso si tienen las mismas propiedades. Solo comparando la misma referencia de objeto consigo mismo se obtiene verdadero.
 
-## Referencias
-* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects 
-* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Details_of_the_Object_Model
-* https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch3.md 
-* https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch3.md
-* https://github.com/mdn/learning-area/blob/master/javascript/oojs/introduction/oojs-class-further-exercises.html
-
-
 ## OOP — repaso
 
 * En que consiste, porque se usa y principios.
-
 
 ### Objetos
 Como lo sugiere el nombre, programacion orientada a objetos, los objetos son bastante importantes. Un objeto es una representación de una "cosa" (alguien o algo), y esta representación es expresada con la ayuda de un lenguaje de programación. La cosa puede ser cualquier cosa/objeto de la vida real o algún concepto más abstracto. Tomando un objeto común, por ejemplo, gato, puede ver que tiene ciertas características (color, nombre, peso).
@@ -307,4 +312,11 @@ work done without creating global variables. A drawback, of course, is that you
 cannot execute the same function twice (unless you put it inside a loop or another
 function). This makes the anonymous self-invoking functions best suited for one-off
 or initialization tasks.
+
+## Referencias
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects 
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Details_of_the_Object_Model
+* https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch3.md 
+* https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch3.md
+* https://github.com/mdn/learning-area/blob/master/javascript/oojs/introduction/oojs-class-further-exercises.html
 
