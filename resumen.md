@@ -1,7 +1,49 @@
-1. Object - introduccion
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects 
-https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch3.md 
-https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch3.md
+# Introduccion a JavaScript Orientado a Objetos
+
+## Programacion Orientada a Objetos
+
+La programación orientada a objetos es un paradigma de programación que utiliza la abstracción para crear modelos basados en el mundo real. Utiliza varias técnicas de paradigmas previamente establecidos, que incluyen modularidad, polimorfismo y encapsulación.
+
+JavaScript no es un lenguaje OOP a toda regla, como Java o PHP, pero es un lenguaje basado en objetos. Cuando hablamos de Objetos en JavaScript, nos estamos refiendo al tipo de dato (Object) y no al concepto de OOP.
+
+## Object
+En JavaScript, existen los siguientes tipos de datos:
+
+* null
+* undefined
+* boolean
+* number
+* string
+* object
+* symbol -- (ES6)
+
+Todos, exepto `object`, se conocen como *primitivos*. Las variables no tienen tipos; los valores tienen tipos. Las variables pueden contener cualquier valor, en cualquier momento.
+
+Adicional a lo anterior, JavaScript tiene una seria de built-in / objetos globales (objetos incorporados), los cuales tienen funciones y propiedades. El término "objetos globales" no debe confundirse con el objeto global (global object). Los objetos globales se refieren a objetos en el ámbito global. Algunos de los mas usados son:
+
+* `String()`
+* `Number()`
+* `Boolean()`
+* `Array()`
+* `Object()`
+* `Function()`
+* `RegExp()`
+* `Date()`
+* `Error()`
+* `Symbol()`
+
+Estas built-in functions, son muy parecidas a las que usamos en Java, y podemos hacer cosas como:
+
+```javascript
+var s = new String( "Hello World!" );
+
+console.log( s.toString() ); // "Hello World!"
+```
+
+### Referencias
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects 
+* https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch3.md 
+* https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch3.md
 
     * Que es, JS Built-in Types, sintaxis basica, para que se usa.
     * Como se crea un Objeto? literal, new y create()
