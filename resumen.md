@@ -129,10 +129,10 @@ var leon = {
 Para acceder a los atributos y/o métodos de un objecto lo podemos hacer de dos maneras, dot notation o Bracket notation:
 
 Dot notation: 
-`console.log(leon.nombre);`
+`leon.nombre`
 
 Bracket notation:
-`console.log(leon['nombre']);`
+`leon['nombre']`
 
 Si tratamos de acceder a una propiedad que no existe, va a retornar `undefined`
 
@@ -141,6 +141,29 @@ Si tratamos de acceder a una propiedad que no existe, va a retornar `undefined`
 Llamar (invocar) un método es lo mismo que llamar a cualquier otra función: simplemente agregamo un paréntesis después del nombre del método, y como el metodo es una propiedad, podemos usar dot o bracket notation.
 
 `leon.hablar();`
+
+### Modificando Propiedades/Metodos
+
+JavaScript es un lenguaje dinámico; permite alterar propiedades y métodos de objetos existentes en cualquier momento. Esto incluye agregar nuevas propiedades o eliminarlas. Se puede comenzar con un objeto en blanco y agregar propiedades más adelante.
+
+```javascript
+var persona = {};
+
+persona.nombre = 'Juan';
+persona.apellido = 'Salas';
+persona.edad = 36;
+persona.intereses = ['cocinar', 'patinar'];
+persona.bio = function() {
+    alert(this.nombre + ' tiene ' + this.edad + ' años. Le gusta ' + this.intereses[0] + ' y ' + this.intereses[1] + '.');
+  };
+
+delete persona.apellido; // retorna undefined
+persona.edad = 35; // sobreescribe el valor de edad
+```
+
+### Comparando Objetos
+
+En JavaScript, los objetos son un tipo de referencia. Dos objetos distintos nunca son iguales, incluso si tienen las mismas propiedades. Solo comparando la misma referencia de objeto consigo mismo se obtiene verdadero.
 
 ### Referencias
 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects 
