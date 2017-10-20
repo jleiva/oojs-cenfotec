@@ -147,7 +147,7 @@ Llamar (invocar) un método es lo mismo que llamar a cualquier otra función: si
 
 `leon.caminar(30);`
 
-# Definiendo getters y setters
+### Definiendo getters y setters
 
 Se pueden definir getters y setters en cualquier objeto predefinido, u objeto definido por el usuario, que admita la adición de nuevas propiedades. La sintaxis para definir getters y setters usa la sintaxis literal del objeto.
 
