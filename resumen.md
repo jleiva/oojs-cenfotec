@@ -8,7 +8,9 @@ OOP se refiere al uso de piezas autónomas de código para desarrollar aplicacio
 
 JavaScript no es un lenguaje OOP a toda regla, como Java o PHP, pero es un lenguaje basado en objetos. Cuando hablamos de Objetos en JavaScript, nos estamos refiendo al tipo de dato (Object) y no al concepto de OOP.
 
-## Tipos de datos y objetos globales
+## Objetos en JavaScript
+
+### Tipos de datos y objetos globales
 En JavaScript, existen los siguientes tipos de datos:
 
 * null
@@ -46,8 +48,7 @@ console.log( s.toString() ); // "Hello World!"
 
 A pesar de lo anterior, es casi universalmente preferido utilizar la forma literal para crear los valores.
 
-
-## Object
+### Object
 
 En algunos lenguajes de programación, hay una distinción entre:
 
@@ -139,7 +140,7 @@ Bracket notation:
 
 Si tratamos de acceder a una propiedad que no existe, va a retornar `undefined`
 
-### Llamando al metodo de un Objeto
+### Llamando metodos de un Objeto
 
 Llamar (invocar) un método es lo mismo que llamar a cualquier otra función: simplemente agregamo un paréntesis después del nombre del método, y como el metodo es una propiedad, podemos usar dot o bracket notation.
 
@@ -206,13 +207,12 @@ persona.edad = 35; // sobreescribe el valor de edad
 
 En JavaScript, los objetos son un tipo de referencia. Dos objetos distintos nunca son iguales, incluso si tienen las mismas propiedades. Solo comparando la misma referencia de objeto consigo mismo se obtiene verdadero.
 
-### Referencias
+## Referencias
 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects 
 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Details_of_the_Object_Model
 * https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch3.md 
 * https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch3.md
 
-    * Get y set de valores
 
 2. OOP — repaso
     * En que consiste, porque se usa y principios.
