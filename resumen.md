@@ -62,6 +62,38 @@ console.log( s.toString() ); // "Hello World!"
 
 A pesar de lo anterior, es casi universalmente preferido utilizar la forma literal para crear los valores.
 
+### Global Object
+
+Los programas de JavaScript se ejecutan dentro de un host environment (el navegador para ejemplo), el cual provee un objeto global, y toda variable global se convierte en una propiedad de este objeto global.
+
+Cuando el host enviroment es el navegador, el objeto global se conoce como *window*. Por ejemplo, si declaramos una variable fuera de una funcion, podemos acceder a esta variable de varias maneras.
+
+```javascript
+var a = 1; // variable global
+
+a // retorna 1
+
+window['a'] &oacute; window.a // retorna 1
+```
+
+Cuando se define una función constructora y se llama sin el operador *new*, *this* hace referencia al objeto global y todas las propiedades definidas con *this* se convierten en propiedades de *window*.
+
+```javascript
+function Hero(value) { 
+  this.name = value;
+}
+
+var h = Hero('Leonardo');
+
+typeof h // undefined
+typeof h.name // Uncaught TypeError: Cannot read property 'name' of undefined (Chrome)
+
+name // "Leonardo"
+window.name // "Leonardo"
+```
+
+Tener variables globales, como la anterior, se le conoce como contaminar el global namespace, y es un anti patron en JavaScript. 
+
 ### Object
 
 En algunos lenguajes de programación, hay una distinción entre:
@@ -77,8 +109,8 @@ Un objeto en JavaScript se ve asi:
 
 ```javascript
 var heroe = {
- clase: 'Turtle',
- ocupacion: 'Ninja'
+  clase: 'Turtle',
+  ocupacion: 'Ninja'
 };
 ```
 
@@ -89,11 +121,12 @@ Del ejemplo anterior se puede ver que:
 * Separamos los elementos (llamados propiedads) contenidos en el objeto usando comas.
 * Los pares de key/value se dividen usando dos puntos (:), key: value
 
+`Object` es el padre de todos los objetos en JavaScript, lo que significa que, cada objeto que creamos hereda de &eacute;l.
+
 ### Como crear Objetos
 
-Para crear un objeto podemos utilizar el constructor, built-in, o la forma literal:
-
 Usando el constructor `Object()`
+
 ```javascript
 var myCar = new Object();
 myCar.make = 'Ford';
@@ -118,12 +151,95 @@ var c = new Obj("hello");
 ```
 
 Usando la forma literal (recomendada)
+
 ```javascript
 var myCar = {
-    make: 'Ford',
-    model: 'Mustang',
-    year: 1969
+  make: 'Ford',
+  model: 'Mustang',
+  year: 1969
 };
+```
+
+### Propiedad `constructor`
+
+Cuando se crea un objeto, se le asigna una propiedad especial *detrás de escena*: la propiedad constructor. Esta propiedad contiene una referencia a la función constructora utilizada para crear este objeto.
+
+Si el objeto se creó utilizando la notación literal de `object`, su constructor es el incorporado en la función constructora `Object()`.
+
+```javascript
+function C() {
+  this.a = 1;
+}
+
+var c = new C();
+c.a; // 1
+typeof c; // "object"
+typeof c.constructor; // "function"
+
+var o = {};
+typeof o; // "object"
+typeof o.constructor; // "function"
+```
+
+### Funciones que retornan Objetos
+
+Además de usar la propiedad constructor y el operador *new* para crear objetos, también podemos usar una función normal y crear objetos sin necesidad de *new*. Por ejemplo, podemos tener una función que realice algun tipo un tarea y tiene un objeto como valor de retorno.
+
+```javascript
+function factory(value) {
+  return {
+    name: value
+  };
+}
+
+var miObj = factory('one');
+miObj.name; // "one"
+miObj; // { name: 'one' }
+```
+
+Podemos utilizar lo anterior, para *ocultar* variables &oacute; m&eacute;todos, y solo expondriamos lo necesario al agregarlo al objeto retornado.
+
+```javascript
+function heroe() {
+  var direccion = 'Esto debe ser privado';
+
+  function saludo() {
+    console.log('Ajoooy');
+  }
+
+  return {
+    saludo: saludo
+  };
+};
+
+var tortuga = heroe();
+
+saludo(); // Uncaught ReferenceError: saludo is not defined
+direccion; // Uncaught ReferenceError: direccion is not defined
+tortuga.direccion; // undefined
+tortuga.saludo(); // 'Ajoooy'
+```
+
+### Operador `instanceof`
+
+Usando el operador `instanceof`, se puede probar si un objeto fue creado con una específica función constructora.
+
+```javascript
+function Hero() {} // ES5
+class BadGuy {} // ES6
+var h = new Hero();
+var z = new BadGuy();
+var o = {};
+
+h instanceof Hero; // true
+h instanceof Object // true
+o instanceof Hero; // false
+o instanceof Object; // true
+z instanceof BadGuy; // true
+z instanceof Object; // true
+
+typeof Hero; // "function"
+typeof BadGuy; // "function"
 ```
 
 ### Elementos, propiedades y metodos
@@ -250,14 +366,14 @@ Los módulos sirven como contenedores físicos en los que se declaran las clas
 El objetivo de fondo de la descomposición en módulos es la reducción del coste del software asi como la complejidad, al permitir que los módulos se diseñen y revisen independientemente.
 
 ### Jerarquía:
-Consiste en una clasificación u organización de las abstracciones.
-Frecuentemente, un conjunto de abstracciones forman una jerarquía.
-La identificación de esas jerarquías simplifica en gran medida la comprensión del problema.
-Las dos jerarquías más importantes en un sistema complejo son:
-• La estructura de objetos (por relaciones de composición, (jerarquía de partes)).
-• Laestructuradeclases(porrelacionesde generalización/especialización, (herencia))
+Consiste en una clasificación u organización de las abstracciones. Frecuentemente, un conjunto de abstracciones forman una jerarquía. La identificación de esas jerarquías simplifica en gran medida la comprensión del problema.
 
-#### Herencia:
+Las dos jerarquías más importantes en un sistema complejo son:
+
+* La estructura de objetos (por relaciones de composición, (jerarquía de partes)).
+* La estructura de clases(por relaciones de generalización/especialización, (herencia))
+
+### Herencia:
 Es la relación de clases más importante y un elemento esencial de los sistemas orientados a objetos.
 Establece una relación, en la que una clase comparte la estructura y comportamiento definido en otra(s).
 Representa una jerarquía de abstracciones, en la que una subclase hereda de una o más superclases.
@@ -281,7 +397,6 @@ Cuando se crea una instancia de un objeto, la funcionalidad no se copia al objet
 
 Object prototypes
 A menudo, JavaScript se describe como un lenguaje basado en prototipos: cada objeto tiene un objeto prototipo, que actúa como un objeto de plantilla que hereda métodos y propiedades.
-
 
 Self-invoking Functions
 So far we have discussed using anonymous functions as callbacks. Let's see another
