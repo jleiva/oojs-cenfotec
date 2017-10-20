@@ -118,8 +118,11 @@ Los elementos de un objeto se conocen como propiedades; una propiedad puede cont
 ```javascript
 var leon = {
  nombre: 'Benji',
- hablar: function() {
+ rugir: function() {
     alert('aaarg!');
+ },
+ caminar: function(velocidad) {
+    alert('camina a ' + velocidad + 'km/h' );
  }
 };
 ```
@@ -140,7 +143,45 @@ Si tratamos de acceder a una propiedad que no existe, va a retornar `undefined`
 
 Llamar (invocar) un método es lo mismo que llamar a cualquier otra función: simplemente agregamo un paréntesis después del nombre del método, y como el metodo es una propiedad, podemos usar dot o bracket notation.
 
-`leon.hablar();`
+`leon.rugir();`
+
+`leon.caminar(30);`
+
+# Definiendo getters y setters
+
+Se pueden definir getters y setters en cualquier objeto predefinido, u objeto definido por el usuario, que admita la adición de nuevas propiedades. La sintaxis para definir getters y setters usa la sintaxis literal del objeto.
+
+```javascript
+var language = {
+  log: ['ES','FR'],
+  get latest() {
+    if (this.log.length == 0) return undefined;
+    return this.log[this.log.length - 1];
+  },
+  set current(name) {
+    this.log.push(name);
+  }
+}
+
+console.log(language.latest); // "FR".
+
+language.current = 'EN';
+console.log(language.log); // ['ES','FR', 'EN']
+```
+
+Para agregar un getter y/o setter a un Objeto ya existente, se debe hacer uso del metodo `Object.defineProperty()`.
+
+```javascript
+var o = {a: 0};
+
+Object.defineProperty(o, 'b', { get: function() { return this.a + 1; } });
+Object.defineProperty(o, 'c', { set: function(x) { this.a = x / 2; } });
+
+console.log(o.b) // Ejecuta el getter, a + 1 (retorna 1)
+
+o.c = 10; // Ejecuta el setter
+console.log(o.a) // 5
+```
 
 ### Modificando Propiedades/Metodos
 
@@ -167,13 +208,10 @@ En JavaScript, los objetos son un tipo de referencia. Dos objetos distintos nunc
 
 ### Referencias
 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects 
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Details_of_the_Object_Model
 * https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch3.md 
 * https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch3.md
 
-    * Que es, JS Built-in Types, sintaxis basica, para que se usa.
-    * Como se crea un Objeto? literal, new y create()
-    * Propiedades y Metodos.
-    * Como se accede a valores (dot notation y bracket notation), y diferencias.
     * Get y set de valores
 
 2. OOP — repaso
