@@ -2,11 +2,13 @@
 
 ## Programacion Orientada a Objetos
 
-La programación orientada a objetos es un paradigma de programación que utiliza la abstracción para crear modelos basados en el mundo real. Utiliza varias técnicas de paradigmas previamente establecidos, que incluyen modularidad, polimorfismo y encapsulación.
+La Programación Orientada a Objetos (OOP) es un paradigma de programación que utiliza la abstracción para crear modelos basados en el mundo real. 
+
+OOP se refiere al uso de piezas autónomas de código para desarrollar aplicaciones. Llamamos a estas piezas autónomas de objetos de código, más conocidos como Clases en la mayoría de los lenguajes de programación OOP y Funciones en JavaScript. Usamos los objetos como bloques de construcción para nuestras aplicaciones. Construir aplicaciones con objetos nos permite adoptar algunas técnicas valiosas, a saber, Herencia (los objetos pueden heredar características de otros objetos), Polimorfismo (los objetos pueden compartir la misma interfaz, cómo se accede y se utiliza), mientras que su aplicación subyacente de la interfaz puede diferir) y encapsulación (cada objeto es responsable de tareas específicas).
 
 JavaScript no es un lenguaje OOP a toda regla, como Java o PHP, pero es un lenguaje basado en objetos. Cuando hablamos de Objetos en JavaScript, nos estamos refiendo al tipo de dato (Object) y no al concepto de OOP.
 
-## Object
+## Tipos de datos y objetos globales
 En JavaScript, existen los siguientes tipos de datos:
 
 * null
@@ -19,7 +21,9 @@ En JavaScript, existen los siguientes tipos de datos:
 
 Todos, exepto `object`, se conocen como *primitivos*. Las variables no tienen tipos; los valores tienen tipos. Las variables pueden contener cualquier valor, en cualquier momento.
 
-Adicional a lo anterior, JavaScript tiene una seria de built-in / objetos globales (objetos incorporados), los cuales tienen funciones y propiedades. El término "objetos globales" no debe confundirse con el objeto global (global object). Los objetos globales se refieren a objetos en el ámbito global. Algunos de los mas usados son:
+A diferencia de muchos otros lenguajes, JavaScript no soporta clases, pero tiene (built-in) constructores. Los constructores son como las funciones normales, pero las usamos con la palabra reservada "new". Hay dos tipos de constructores: constructores nativos (también incorporados) como `Array` y `Objet`, que están disponibles automáticamente en el entorno de ejecución en *runtime*; y constructores personalizados, que definen propiedades y métodos para su propio tipo de objeto.
+
+Esta serie de built-in / objetos globales (objetos incorporados), tienen funciones y propiedades. El término "objetos globales" no debe confundirse con el objeto global (global object). Los objetos globales se refieren a objetos en el ámbito global. Algunos de los mas usados son:
 
 * `String()`
 * `Number()`
@@ -40,6 +44,86 @@ var s = new String( "Hello World!" );
 console.log( s.toString() ); // "Hello World!"
 ```
 
+A pesar de lo anterior, es casi universalmente preferido utilizar la forma literal para crear los valores.
+
+
+## Object
+
+En algunos lenguajes de programación, hay una distinción entre:
+
+* Una matriz normal, también llamada indexada o enumerada (keys son números) y
+* Una matriz asociativa, también llamada hash (keys son strings)
+
+JavaScript usa `array` para representar matrices indexadas y `object` (objeto) para representar matrices asociativas. Si quiere un hash en JavaScript, usa un `object`.
+
+Un objeto es muy similar a un array, pero con la diferencia de que uno puede definir los keys. No está limitado a usar solo índices numéricos, sino que, podemos usar más keys mas amigables como *first_name*, *age*, *curso*, etc.
+
+Un objeto en JavaScript se ve asi:
+
+```javascript
+var heroe = {
+ clase: 'Turtle',
+ ocupacion: 'Ninja'
+};
+```
+
+Del ejemplo anterior se puede ver que:
+
+* El nombre de la variable que contiene al objeto es heroe.
+* En lugar de usar [] para definir un array, usamos {} para objetos
+* Separamos los elementos (llamados propiedads) contenidos en el objeto usando comas.
+* Los pares de key/value se dividen usando dos puntos (:), key: value
+
+### Como crear Objetos
+
+Para crear un objeto podemos utilizar el constructor, built-in, o la forma literal:
+
+```javascript
+var myCar = new Object();
+myCar.make = 'Ford';
+myCar.model = 'Mustang';
+myCar.year = 1969;
+```
+
+```javascript
+var myCar = {
+    make: 'Ford',
+    model: 'Mustang',
+    year: 1969
+};
+```
+
+### Elementos, propiedades y metodos
+
+Los elementos de un objeto se conocen como propiedades; una propiedad puede contener cualquier tipo de valor, incluso otro objeto; cuando la propiedad contiene una funcion, se le llama metodo.
+
+```javascript
+var leon = {
+ nombre: 'Benji',
+ hablar: function() {
+    alert('aaarg!');
+ }
+};
+```
+
+### Accediendo a las propiedades de un Objeto
+
+Para acceder a los atributos y/o métodos de un objecto lo podemos hacer de dos maneras, dot notation o Bracket notation:
+
+Dot notation: 
+`console.log(leon.nombre);`
+
+Bracket notation:
+`console.log(leon['nombre']);`
+
+Si tratamos de acceder a una propiedad que no existe, va a retornar `undefined`
+
+### Llamando al metodo de un Objeto
+
+Llamar (invocar) un método es lo mismo que llamar a cualquier otra función: simplemente agregamo un paréntesis después del nombre del método, y como el metodo es una propiedad, podemos usar dot o bracket notation.
+
+`leon.hablar();`
+
 ### Referencias
 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects 
 * https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch3.md 
@@ -55,11 +139,6 @@ console.log( s.toString() ); // "Hello World!"
     * En que consiste, porque se usa y principios.
     * https://github.com/mdn/learning-area/blob/master/javascript/oojs/introduction/oojs-class-further-exercises.html
 
-En algunos lenguajes de programación, hay una distinción entre:
-Una matriz normal, también llamada indexada o enumerada (keys son números) y
-Una matriz asociativa, también llamada hash (keys son strings)
-
-JavaScript usa arrays para representar matrices indexadas y objetos para representar matrices asociativas. Si quiere un hash en JavaScript, usa un objeto.
 
 Objetos
 Como lo sugiere el nombre, programacion orientada a objetos, los objetos son bastante importantes. Un objeto es una representación de una "cosa" (alguien o algo), y esta representación es expresada con la ayuda de un lenguaje de programación. La cosa puede ser cualquier cosa/objeto de la vida real o algún concepto más abstracto. Tomando un objeto común, por ejemplo, gato, puede ver que tiene ciertas características (color, nombre, peso).
@@ -119,4 +198,35 @@ Cuando se crea una instancia de un objeto, la funcionalidad no se copia al objet
 
 Object prototypes
 A menudo, JavaScript se describe como un lenguaje basado en prototipos: cada objeto tiene un objeto prototipo, que actúa como un objeto de plantilla que hereda métodos y propiedades.
+
+
+Self-invoking Functions
+So far we have discussed using anonymous functions as callbacks. Let's see another
+application of an anonymous function—calling this function right after it was
+defined. Here's an example:
+
+```javascript
+(function(){
+ alert('boo');
+ }
+)()
+```
+
+The syntax may look a little scary at first, but it's actually easy—you simply place
+an anonymous function definition inside parentheses followed by another set of
+parentheses. The second set basically says "execute now" and is also the place to put
+any parameters that your anonymous function might accept.
+
+```javascript
+(function(name){
+ alert('Hello ' + name + '!');
+ }
+)('dude')
+```
+
+One good reason for using self-invoking anonymous functions is to have some
+work done without creating global variables. A drawback, of course, is that you
+cannot execute the same function twice (unless you put it inside a loop or another
+function). This makes the anonymous self-invoking functions best suited for one-off
+or initialization tasks.
 
