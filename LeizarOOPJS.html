@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<script>
+		
+		//Encapsulamiento
+		/*Patrón Módulo: nos permite tener variables, propiedades 
+		y metodos/funciones tanto publicos como privados*/
+
+		var helloSekai = ( function(){
+		 
+		  //Privado
+		  var hola = 'Hello';
+		  var mundo = 'World';
+		 
+		  var suma = function( param1, param2 ){
+			return param1 + param2;
+		  }
+		 
+		  //Publico
+		  return {
+			miMensaje: function(){
+			  return hola + ' ' + mundo;
+			}
+		  }
+		})();
+
+		console.log( helloSekai.miMensaje() ); // Hello World
+		console.log( helloSekai.suma( 10, 5 ) ); // TypeError: helloSekai.suma is not a function. // suma es privada
+
+		//Abstracion
+		/*En JS no es posible declarar clases o métodos abstractos, 
+		debemos agregar validaciones (excepciones) para asegurarnos 
+		de que las funcionalidades de una clase abstracta apliquen.*/
+
+		 //Clase abstracta
+		class Animal {
+		   constructor() {
+			 if (this.constructor === Animal) {
+			   throw new TypeError("No se puede instanciar una clase abstracta!");
+			 }
+		   }
+		 }
+		 
+		var Gato = new Animal();
+		//TypeError: No se puede instanciar una clase abstracta!
+		
+	</script>
+</body>
+</html>
