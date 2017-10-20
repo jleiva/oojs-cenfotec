@@ -78,6 +78,7 @@ Del ejemplo anterior se puede ver que:
 
 Para crear un objeto podemos utilizar el constructor, built-in, o la forma literal:
 
+Usando el constructor `Object()`
 ```javascript
 var myCar = new Object();
 myCar.make = 'Ford';
@@ -85,6 +86,23 @@ myCar.model = 'Mustang';
 myCar.year = 1969;
 ```
 
+Usando el metodo Object.create()
+
+```javascript
+var myCar = Object.create(null);
+```
+
+Usando una funcion como constructor
+
+```javascript
+var Obj = function(value) {
+  this.name = value
+}
+
+var c = new Obj("hello"); 
+```
+
+Usando la forma literal (recomendada)
 ```javascript
 var myCar = {
     make: 'Ford',
