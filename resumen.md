@@ -490,18 +490,25 @@ person1.data instanceof Object; // true
 
 La clase Person hereda de la clase Object, por esto `person1` tambien es una instancia de Object (demuestra especialización) y la propiedad `person1.data` es una instancia de Object (demuestra composición).
 
-### Encapsulamiento:
-En los lenguajes compilados, no se puede leer el código que hace que un objeto funcione. En JavaScript, porque es un lenguaje interpretado, se puede ver el código fuente, pero el concepto sigue siendo el mismo: se trabaja con la interfaz del objeto, sin preocuparse por su implementación.
-
-Otro aspecto de la ocultación de información es la visibilidad de los métodos y las propiedades. En algunos lenguajes (Java), los objetos pueden tener propiedades y métodos públicos, privados y protegidos. Esta categorización define el nivel de acceso que tienen los usuarios del objeto. Por ejemplo, solo la implementación interna del objeto tiene acceso a los métodos privados, mientras que cualquier persona tiene acceso a los públicos. En JavaScript, todos los métodos y propiedades son públicos, pero hay formas de proteger los datos dentro de un objeto y lograr privacidad.
-
-En la secci&oacute;n [Funciones que retornan Objetos](#funciones-que-retornan-objetos) se comento brevemente que, usando una función normal, podemos simular el *ocultar* información al retornar expresamente variables ó m&eacute;todos que deseamos que sean p&uacutel;blicos, cualquier otra implementación queda protegida dentro del ambito de la función. 
-
-
 ### Modularidad:
-El concepto de modularidad ofrece mecanismos para agrupar abstracciones relacionadas lógicamente.
-Los módulos sirven como contenedores físicos en los que se declaran las clases y objetos del diseño lógico realizado.
+El concepto de modularidad ofrece mecanismos para agrupar abstracciones relacionadas lógicamente. Los módulos sirven como contenedores físicos en los que se declaran las clases y objetos del diseño lógico realizado.
+
 El objetivo de fondo de la descomposición en módulos es la reducción del coste del software asi como la complejidad, al permitir que los módulos se diseñen y revisen independientemente.
+
+JavaScript ha tenido módulos durante mucho tiempo. Sin embargo, se implementaron a través de bibliotecas, no integradas en el lenguaje. Con la llegada de ES6, podemos olvidarnos de las librerias externas, y crear modulos de manera nativa.
+
+Un módulo JavaScript es un archivo que exporta algo para que otros módulos lo consuman, algunas consideraciones:
+
+* Cada módulo es una pieza de código que se ejecuta una vez que se carga.
+* En ese código, puede haber declaraciones (declaraciones de variables, declaraciones de funciones, etc.). Por defecto, estas declaraciones permanecen locales en el módulo.
+* Un módulo puede importar cosas de otros módulos.
+* Los módulos son singletons. Incluso si un módulo se importa varias veces, solo existe una única "instancia" del mismo.
+* Este enfoque a los módulos evita las variables globales.
+
+```javascript
+// myModulo.js
+
+```
 
 ### Jerarquía:
 Consiste en una clasificación u organización de las abstracciones. Frecuentemente, un conjunto de abstracciones forman una jerarquía. La identificación de esas jerarquías simplifica en gran medida la comprensión del problema.
@@ -512,21 +519,85 @@ Las dos jerarquías más importantes en un sistema complejo son:
 * La estructura de clases(por relaciones de generalización/especialización, (herencia))
 
 ### Herencia:
-Es la relación de clases más importante y un elemento esencial de los sistemas orientados a objetos.
-Establece una relación, en la que una clase comparte la estructura y comportamiento definido en otra(s).
-Representa una jerarquía de abstracciones, en la que una subclase hereda de una o más superclases.
-La característica de herencia, permite definir nuevas clases derivadas de otras ya existentes, que la especializan de alguna manera. Asi ́se logra definir una jerarquía de clases, que se puede mostrar mediante un árbol de herencia.
+Es la relación de clases más importante y un elemento esencial de los sistemas orientados a objetos. Establece una relación, en la que una clase comparte la estructura y comportamiento definido en otra(s).
+
+La característica de herencia, permite definir nuevas clases derivadas de otras ya existentes, que la especializan de alguna manera. Asi se logra definir una jerarquía de clases, que se puede mostrar mediante un árbol de herencia.
 La subclase hereda los atributos y operaciones de la superclase, y puede sobreescribir (override) las operaciones (métodos) heredadas.
 
 En OOP clásico, las clases heredan de otras clases, pero en JavaScript, porque allí no hay clases, los objetos heredan de otros objetos.
 
+```javascript
+class Person {
+  constructor(name, age) {
+    this._name = name;
+    this._age = age;
+  }
+
+  showInfo() {
+    return `I'm ${this._name}, aged ${this._age}.`;
+  }
+}
+
+class Employee extends Person {
+  constructor(name, age, sex) {
+    super(name, age);
+    this._sex = sex;
+  }
+
+  showInfo() {
+    return `I'm a ${this._sex} named ${this._name}, aged ${this._age}.`;
+  }
+}
+
+const alice = new Person("Alice", 20);
+const bob = new Employee("Bob", 25, "male");
+
+console.log(alice.showInfo());
+console.log(bob.showInfo());
+```
+
+### Encapsulamiento:
+En los lenguajes compilados, no se puede leer el código que hace que un objeto funcione. En JavaScript, porque es un lenguaje interpretado, se puede ver el código fuente, pero el concepto sigue siendo el mismo: se trabaja con la interfaz del objeto, sin preocuparse por su implementación.
+
+Otro aspecto de la ocultación de información es la visibilidad de los métodos y las propiedades. En algunos lenguajes (Java), los objetos pueden tener propiedades y métodos públicos, privados y protegidos. Esta categorización define el nivel de acceso que tienen los usuarios del objeto. Por ejemplo, solo la implementación interna del objeto tiene acceso a los métodos privados, mientras que cualquier persona tiene acceso a los públicos. En JavaScript, todos los métodos y propiedades son públicos, pero hay formas de proteger los datos dentro de un objeto y lograr privacidad.
+
+En la secci&oacute;n [Funciones que retornan Objetos](#funciones-que-retornan-objetos) se comento brevemente que, usando una función normal, podemos simular el *ocultar* información al retornar expresamente variables ó m&eacute;todos que deseamos que sean p&uacute;blicos, cualquier otra implementación queda protegida dentro del ambito de la función.
+
 ### Poliformismo:
-Polimorfismo: la capacidad de un método de ser utilizado en distintas situaciones.
-En el caso de JavaScript, se materializa en forma de jerarquías de tipos usando herencia prototípica (prototypal inheritance). 
+Polimorfismo: la capacidad de un método de ser utilizado en distintas situaciones. En el caso de JavaScript, se materializa en forma de jerarquías de tipos usando herencia prototípica (prototypal inheritance).
 
+```javascript
+class Animal {
+  talk() {
+    console.log("?")
+  }
+}
 
-Bob is a man (an object). objects
-Bob's date of birth is June 1st, 1980, gender: male, hair: black. properties
+class Bird extends Animal {
+  talk() {
+    console.log("tweet tweet")
+  }
+  fly() {
+    console.log("flap flap")
+  }
+}
+
+class Parrot extends Bird {
+  talk() {
+    console.log("polly want a cracker")
+  }
+}
+
+var animal1 = new Animal()
+var canario = new Bird()
+var periquito = new Parrot()
+
+animal1.talk()  /// ?
+canario.talk()  /// tweet tweet
+canario.fly()   /// flap flap
+periquito.talk()  /// polly want a cracker
+periquito.fly()   /// flap flap
+```
 
 Self-invoking Functions
 So far we have discussed using anonymous functions as callbacks. Let's see another
@@ -552,17 +623,16 @@ any parameters that your anonymous function might accept.
 )('dude')
 ```
 
-One good reason for using self-invoking anonymous functions is to have some
-work done without creating global variables. A drawback, of course, is that you
-cannot execute the same function twice (unless you put it inside a loop or another
-function). This makes the anonymous self-invoking functions best suited for one-off
-or initialization tasks.
+One good reason for using self-invoking anonymous functions is to have some work done without creating global variables. A drawback, of course, is that you cannot execute the same function twice (unless you put it inside a loop or another function). This makes the anonymous self-invoking functions best suited for one-off or initialization tasks.
 
 ## Referencias
+
 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects 
 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Details_of_the_Object_Model
 * https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch3.md 
 * https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch3.md
 * https://github.com/mdn/learning-area/blob/master/javascript/oojs/introduction/oojs-class-further-exercises.html
 * https://webplatform.github.io/docs/concepts/programming/javascript/OOJ/
+* http://exploringjs.com/es6/ch_classes.html
+* https://www.sitepoint.com/object-oriented-javascript-deep-dive-es6-classes/
 
