@@ -345,22 +345,123 @@ persona.edad = 35; // sobreescribe el valor de edad
 
 En JavaScript, los objetos son un tipo de referencia. Dos objetos distintos nunca son iguales, incluso si tienen las mismas propiedades. S&oacute;lo comparando la misma referencia de objeto consigo mismo se obtiene true.
 
-## OOP — repaso
+## JavaScript Orientado a Objetos
 
-* En que consiste, porque se usa y principios.
+Como se indico anteriormente, JavaScript no es un lenguaje orientado a objetos, al meno no de la manera tradicional. Sin embargo, muchos de los principios de OOP se han visto adoptados.
 
 ### Objetos
-Como lo sugiere el nombre, programacion orientada a objetos, los objetos son bastante importantes. Un objeto es una representación de una "cosa" (alguien o algo), y esta representación es expresada con la ayuda de un lenguaje de programación. La cosa puede ser cualquier cosa/objeto de la vida real o algún concepto más abstracto. Tomando un objeto común, por ejemplo, gato, puede ver que tiene ciertas características (color, nombre, peso).
-y puede realizar algunas acciones (maullar, dormir, esconder, escapar). Las características del objeto se llaman propiedades en OOP y las acciones se llaman métodos.
-También hay una analogía con el lenguaje hablado:
-Los objetos se nombran con mayor frecuencia usando sustantivos (libro, persona)
-Los métodos son verbos (lectura, ejecución)
-Los valores de las propiedades son adjetivos
 
-### Clases
+Como lo sugiere el nombre, OOP, los objetos son bastante importantes. A nivel conceptual, un objeto es una representación de una "cosa" (alguien o algo), y esta representación es expresada con la ayuda de un lenguaje de programación. La cosa puede ser cualquier cosa/objeto de la vida real o algún concepto más abstracto. Tomando un objeto común, por ejemplo, gato, se puede ver que tiene ciertas características (color, nombre, peso), y puede realizar algunas acciones (maullar, dormir, esconder, escapar). Las características del objeto se llaman propiedades en OOP y las acciones se llaman métodos.
+
+También hay una analogía con el lenguaje hablado:
+
+* Los objetos se nombran con mayor frecuencia usando sustantivos (libro, persona).
+* Los métodos son verbos (lectura, ejecución).
+* Los valores de las propiedades son adjetivos.
+
+A pesar de que, normalmente cuando hablamos de Objetos en JavaScript nos referimos al tipo de dato, la definicion anterior es aplicable, ya que, como se menciono anteriormente, un objeto en JavaScript esta formado por pares de llave/valor, los cuales se llaman propiedades, y cuando el valor de una propiedad es una funcion, se le llama metodo.
+
+Tambien mencionamos previamenente que, cada objeto en JavaScript es una instancia del objeto `Object`, por lo que, hereda todas sus propiedades y metodos.
+
+### Clases en JavaScript
+
 En la vida real, los objetos similares se pueden agrupar en función de algunos criterios. En OOP, una clase es un plano, o una receta para un objeto. Puede crear diferentes objetos utilizando la misma clase, porque una clase es solo una plantilla, mientras que los objetos son instancias concretas, basadas en la plantilla.
 
-En JavaScript no hay clases; todo se basa en objetos.
+En JavaScript no hay clases; todo se basa en objetos. JavaScript utiliza funciones como clases a las cuales se les llama funciones constructoras (constructor functions). Las funciones constructoras son la version de una Clase en JavaScript; estas funciones no devuelve nada ni crean explícitamente un objeto; básicamente, solo define propiedades y métodos. Por convencion, hasta la version ES5 del lenguaje, normalmente el nombre de estas funciones inicia con mayuscula, para que sea mas facil reconocerlas.
+
+Por ejemplo:
+
+```javascript
+function Person() { }
+```
+
+Para crear una nueva instancia de un objeto `objX` utilizamos el enunciado `new objX`, asignando el resultado (que es de tipo obj) a una variable para acceder a él más tarde
+
+Cuando se crea una instancia de un objeto, la funcionalidad no se copia al objeto nuevo como en los lenguajes OOP "clásicos", sino que, la funcionalidad está vinculada a través de una cadena de referencia llamada prototipo de cadena (prototype chain). Entonces, esto no es una instancia verdadera, estrictamente hablando: JavaScript usa un mecanismo diferente para compartir la funcionalidad entre los objetos.
+
+JavaScript se describe como un lenguaje basado en prototipos: cada objeto tiene un objeto prototipo, que actúa como un objeto de plantilla que hereda métodos y propiedades. A pesar de que, no se cubrira el tema de prototipos, es importante indicar que, los metodos de un objeto se deben agregar mediante objeto prototipo, y no directamente en la funcion.
+
+La propiedad prototipo es un objeto, básicamente es un depósito para almacenar propiedades y métodos que queremos que hereden los objetos que se encuentran más abajo en la cadena de prototipos.
+
+```javascript
+NombreObjeto.prototype.nombreMetodo = function() { };
+```
+
+#### Constructor
+
+En la primera seccion, cuando cubrimos la parte de Objetos, se menciono que, todo objeto tiene una propiedad especial, llamada constructor. El constructor se llama en el momento de la creación de instancias (el momento en que se crea la instancia del objeto). El constructor es un método de la clase. En JavaScript, la función sirve como el constructor del objeto; por lo tanto, no es necesario definir explícitamente un método constructor. Cada acción declarada en la clase se ejecuta en el momento de la creación de instancias.
+
+```javascript
+function Person(firstName, gender) {
+  this.firstName = firstName;
+  this.gender = gender;
+}
+
+Person.prototype.sayHello = function() {
+  console.log("Hello, I'm " + this.firstName);
+};
+
+var person1 = new Person('Bob', 'Male');
+var person2 = new Person('Alice', 'Women');
+
+// logs "Hello, I'm Bob"
+person1.sayHello();
+
+// logs "Hello, I'm Alice"
+person2.sayHello();
+```
+
+Con ES6, ultima version del lenguange, se adiciona el keyword `class`. Este tipo de clases son principalmente *syntactical sugar* - sintaxis para que algo en el lenguaje sea mas sencillo de aplicar/entender. Por debajo, se sigue usando el mismo modelo de herencia prototipica.
+
+Podemos tomar el ejemplo anterior y usar la sintaxis de ES6 para crear una clase, y el resultado es el mismo.
+
+```javascript
+class Person {
+  constructor(firstName, gender) {
+    this.firstName = firstName;
+    this.gender = gender;
+  }
+}
+
+Person.prototype.sayHello = function() {
+  console.log("Hello, I'm " + this.firstName);
+};
+
+var person1 = new Person('Bob', 'Male');
+var person2 = new Person('Alice', 'Women');
+
+// logs "Hello, I'm Bob"
+person1.sayHello();
+
+// logs "Hello, I'm Alice"
+person2.sayHello();
+```
+
+Podemos usar una clase sin nombrar o nombrada:
+
+```javascript
+// sin nombre
+var Rectangle = class {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+};
+
+// con nombre
+var Rectangle = class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+};
+```
+
+Algunas razones para usar la version ES6:
+
+* La sintaxis es más simple y menos propensa a errores.
+* `class` nos defiende del error común de no usar `new` con la función constructor.
+* Podemos usar el keyword `static` para crear metodos estaticos.
 
 ### Encapsulamiento:
 En los lenguajes compilados, no se puede leer el código que hace que un objeto funcione. En JavaScript, porque es un lenguaje interpretado, se puede ver el código fuente, pero el concepto sigue siendo el mismo: se trabaja con la interfaz del objeto, sin preocuparse por su implementación.
@@ -398,14 +499,6 @@ En el caso de JavaScript, se materializa en forma de jerarquías de tipos usando
 Bob is a man (an object). objects
 Bob's date of birth is June 1st, 1980, gender: male, hair: black. properties
 
-JavaScript, usa funciones especiales llamadas funciones constructoras (constructor functions) para definir objetos y sus características. Las funciones constructoras son la version de una Clase en JavaScript; estas funciones no devuelve nada ni crean explícitamente un objeto; básicamente, solo define propiedades y métodos. Por convencion, normalmente el nombre de estas funciones inicia con mayuscula, para que sea mas facil reconocerlas.
-
-Cuando se crea una instancia de un objeto, la funcionalidad no se copia al objeto nuevo como en los lenguajes OOP "clásicos", sino que, la funcionalidad está vinculada a través de una cadena de referencia llamada prototipo de cadena (prototype chain). Entonces, esto no es una instancia verdadera, estrictamente hablando: JavaScript usa un mecanismo diferente para compartir la funcionalidad entre los objetos.
-
-
-Object prototypes
-A menudo, JavaScript se describe como un lenguaje basado en prototipos: cada objeto tiene un objeto prototipo, que actúa como un objeto de plantilla que hereda métodos y propiedades.
-
 Self-invoking Functions
 So far we have discussed using anonymous functions as callbacks. Let's see another
 application of an anonymous function—calling this function right after it was
@@ -442,4 +535,5 @@ or initialization tasks.
 * https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch3.md 
 * https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch3.md
 * https://github.com/mdn/learning-area/blob/master/javascript/oojs/introduction/oojs-class-further-exercises.html
+* https://webplatform.github.io/docs/concepts/programming/javascript/OOJ/
 
