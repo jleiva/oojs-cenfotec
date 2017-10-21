@@ -20,7 +20,13 @@
 1. [JavaScript Orientado a Objetos](#javascript-orientado-a-objetos)
     1. [Objetos](#objetos)
     1. [Clases en JavaScript](#clases-en-javascript)
-    1. [Clases en JavaScript](#clases-en-javascript)
+    1. [Abstracción](#abstracción)
+    1. [Modularidad](#modularidad)
+    1. [Jerarquía](#jerarquía)
+    1. [Herencia](#herencia)
+    1. [Encapsulamiento](#encapsulamiento)
+    1. [Poliformismo](#poliformismo)
+1. [Referencias](#referencias)
 
 ## Programaci&oacute;n Orientada a Objetos
 
@@ -506,11 +512,22 @@ Un módulo JavaScript es un archivo que exporta algo para que otros módulos lo 
 * Este enfoque a los módulos evita las variables globales.
 
 ```javascript
-// myModulo.js
+//------ myFunc.js ------
+export default function () {} // no semicolon!
 
+//------ main1.js ------
+import myFunc from 'myFunc';
+myFunc();
+
+//------ MyClass.js ------
+export default class {} // no semicolon!
+
+//------ main2.js ------
+import MyClass from 'MyClass';
+const inst = new MyClass();
 ```
 
-### Jerarquía:
+### Jerarquía
 Consiste en una clasificación u organización de las abstracciones. Frecuentemente, un conjunto de abstracciones forman una jerarquía. La identificación de esas jerarquías simplifica en gran medida la comprensión del problema.
 
 Las dos jerarquías más importantes en un sistema complejo son:
@@ -518,7 +535,7 @@ Las dos jerarquías más importantes en un sistema complejo son:
 * La estructura de objetos (por relaciones de composición, (jerarquía de partes)).
 * La estructura de clases(por relaciones de generalización/especialización, (herencia))
 
-### Herencia:
+### Herencia
 Es la relación de clases más importante y un elemento esencial de los sistemas orientados a objetos. Establece una relación, en la que una clase comparte la estructura y comportamiento definido en otra(s).
 
 La característica de herencia, permite definir nuevas clases derivadas de otras ya existentes, que la especializan de alguna manera. Asi se logra definir una jerarquía de clases, que se puede mostrar mediante un árbol de herencia.
@@ -556,14 +573,42 @@ console.log(alice.showInfo());
 console.log(bob.showInfo());
 ```
 
-### Encapsulamiento:
+### Encapsulamiento
 En los lenguajes compilados, no se puede leer el código que hace que un objeto funcione. En JavaScript, porque es un lenguaje interpretado, se puede ver el código fuente, pero el concepto sigue siendo el mismo: se trabaja con la interfaz del objeto, sin preocuparse por su implementación.
 
 Otro aspecto de la ocultación de información es la visibilidad de los métodos y las propiedades. En algunos lenguajes (Java), los objetos pueden tener propiedades y métodos públicos, privados y protegidos. Esta categorización define el nivel de acceso que tienen los usuarios del objeto. Por ejemplo, solo la implementación interna del objeto tiene acceso a los métodos privados, mientras que cualquier persona tiene acceso a los públicos. En JavaScript, todos los métodos y propiedades son públicos, pero hay formas de proteger los datos dentro de un objeto y lograr privacidad.
 
 En la secci&oacute;n [Funciones que retornan Objetos](#funciones-que-retornan-objetos) se comento brevemente que, usando una función normal, podemos simular el *ocultar* información al retornar expresamente variables ó m&eacute;todos que deseamos que sean p&uacute;blicos, cualquier otra implementación queda protegida dentro del ambito de la función.
 
-### Poliformismo:
+#### Patron Módulo
+
+El patrón Módulo es un ejemplo de como crear encapsulamiento, pública y privada, en JavaScript..
+
+En JavaScript, el patrón Module se utiliza para seguir emulando el concepto de clases de forma que podamos incluir tanto, los métodos públicos como los privados y las variables dentro de un solo objeto, protegiendo así partes particulares del *global scope*
+
+```javascript
+var helloSekai = (function() { 
+  //Privado
+  var hola = 'Hello';
+  var mundo = 'World';
+ 
+  var suma = function(param1, param2) {
+    return param1 + param2;
+  };
+ 
+  //Publico
+  return {
+    miMensaje: function() {
+      return hola + ' ' + mundo;
+    }
+  }
+})();
+
+console.log( helloSekai.miMensaje() ); // Hello World
+console.log( helloSekai.suma( 10, 5 ) ); // TypeError: helloSekai.suma is not a function. // suma es privada
+```
+
+### Poliformismo
 Polimorfismo: la capacidad de un método de ser utilizado en distintas situaciones. En el caso de JavaScript, se materializa en forma de jerarquías de tipos usando herencia prototípica (prototypal inheritance).
 
 ```javascript
@@ -599,32 +644,6 @@ periquito.talk()  /// polly want a cracker
 periquito.fly()   /// flap flap
 ```
 
-Self-invoking Functions
-So far we have discussed using anonymous functions as callbacks. Let's see another
-application of an anonymous function—calling this function right after it was
-defined. Here's an example:
-
-```javascript
-(function(){
- alert('boo');
- }
-)()
-```
-
-The syntax may look a little scary at first, but it's actually easy—you simply place
-an anonymous function definition inside parentheses followed by another set of
-parentheses. The second set basically says "execute now" and is also the place to put
-any parameters that your anonymous function might accept.
-
-```javascript
-(function(name){
- alert('Hello ' + name + '!');
- }
-)('dude')
-```
-
-One good reason for using self-invoking anonymous functions is to have some work done without creating global variables. A drawback, of course, is that you cannot execute the same function twice (unless you put it inside a loop or another function). This makes the anonymous self-invoking functions best suited for one-off or initialization tasks.
-
 ## Referencias
 
 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects 
@@ -635,4 +654,5 @@ One good reason for using self-invoking anonymous functions is to have some work
 * https://webplatform.github.io/docs/concepts/programming/javascript/OOJ/
 * http://exploringjs.com/es6/ch_classes.html
 * https://www.sitepoint.com/object-oriented-javascript-deep-dive-es6-classes/
+* https://addyosmani.com/resources/essentialjsdesignpatterns/book/index.html
 
