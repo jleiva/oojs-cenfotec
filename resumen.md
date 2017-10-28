@@ -614,34 +614,34 @@ Polimorfismo: la capacidad de un método de ser utilizado en distintas situacio
 ```javascript
 class Animal {
   talk() {
-    console.log("?")
+    console.log("?");
   }
 }
 
 class Bird extends Animal {
   talk() {
-    console.log("tweet tweet")
+    console.log("tweet tweet");
   }
   fly() {
-    console.log("flap flap")
+    console.log("flap flap");
   }
 }
 
 class Parrot extends Bird {
   talk() {
-    console.log("polly want a cracker")
+    console.log("polly want a cracker");
   }
 }
 
-var animal1 = new Animal()
-var canario = new Bird()
-var periquito = new Parrot()
+var animal1 = new Animal();
+var canario = new Bird();
+var periquito = new Parrot();
 
-animal1.talk()  /// ?
-canario.talk()  /// tweet tweet
-canario.fly()   /// flap flap
-periquito.talk()  /// polly want a cracker
-periquito.fly()   /// flap flap
+animal1.talk(); /// ?
+canario.talk();  /// tweet tweet
+canario.fly();   /// flap flap
+periquito.talk();  /// polly want a cracker
+periquito.fly();   /// flap flap
 ```
 
 ## Referencias
