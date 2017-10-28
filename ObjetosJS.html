@@ -84,6 +84,42 @@
 		//crear nuevamente la propiedad
 		alex.nombre = 'Alex';
 		console.log(alex.nombre);
+		
+		//Herencia
+		class Person {
+			constructor(name, age) {
+			  this._name = name;
+			  this._age = age;
+			}
+
+			showInfo() {
+			  return `I'm ${this._name}, aged ${this._age}.`;
+			}
+		  }
+
+		  class Employee extends Person {
+			constructor(name, age, sex) {
+			  super(name, age);
+			  this._sex = sex;
+			}
+
+			showInfo() {
+			  return `I'm a ${this._sex} named ${this._name}, aged ${this._age}`;
+			}
+		  }
+
+		  const alice = new Person("Alice", 20);
+		  const bob = new Employee("Bob", 25, "male");
+
+  // console.log(alice.showInfo());
+  // console.log(bob.showInfo());
+
+		  imprimir(alice);
+		  imprimir(bob);
+
+		  function imprimir(persona){
+		   console.log(persona.showInfo());
+		  }
 
 	</script>
 </body>
